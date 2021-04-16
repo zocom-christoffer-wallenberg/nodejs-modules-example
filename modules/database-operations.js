@@ -3,7 +3,7 @@ const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('database.json');
 const database = lowdb(adapter);
 
-exports.initiateDatabase = () => {
+function initiateDatabase() {
     const hasDatabase = database.has('insults').value();
 
     if (!hasDatabase) {
@@ -11,6 +11,9 @@ exports.initiateDatabase = () => {
     }
 };
 
-exports.getInsults = () => {
+function getInsults() {
     return database.get('insults').value();
 }
+
+exports.initiateDatabase = initiateDatabase;
+exports.getInsults = getInsults;

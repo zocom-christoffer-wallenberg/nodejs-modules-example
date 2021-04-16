@@ -1,12 +1,11 @@
+const express = require('express');
 const database = require('./database-operations');
 
-module.exports = (app) => {
-    app.get('/', (request, response) => {
-        response.send('<h1>Hello World!</h1>');
-    });
+const router = express.Router();
 
-    app.get('/getInsults', (request, response) => {
-        const insults = database.getInsults();
-        response.send(JSON.stringify(insults));
-    });
-}
+router.get('/', (request, response) => {
+    const insults = database.getInsults();
+    response.send(JSON.stringify(insults));
+});
+
+module.exports = router;
